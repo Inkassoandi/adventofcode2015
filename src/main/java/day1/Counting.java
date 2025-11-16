@@ -35,5 +35,36 @@ public class Counting {
         return floor;
     }
 
+    public static int firstTimeBasement(String filename) throws IOException {
+
+        int counter = 0;
+        int basement = 0;
+        int floor = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+
+            String line;
+            char[] chars = null;
+
+            while ((line = br.readLine()) != null) {
+                line = line.strip();
+                chars = line.toCharArray();
+            }
+
+            for (char c : chars) {
+                if (floor == -1){
+                    break;
+                }
+                if (c == '(') {
+                    floor++;
+                } else if (c == ')'){
+                    floor--;
+                }
+                counter++;
+            }
+            basement = counter;
+        }
+        return basement;
+    }
+
 
 }
