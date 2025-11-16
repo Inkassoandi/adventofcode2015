@@ -11,13 +11,13 @@ class CountingTest {
 
     @Test
     void floorCount() throws IOException {
-        int floortest = Counting.floorCount("test_input.txt");
+        int floortest = Counting.floorCount("day1_test_input.txt");
         Assertions.assertEquals(2, floortest);
     }
 
     @Test
     void firstTimeBasement() throws IOException {
-        int basementTest = Counting.firstTimeBasement("test_input.txt");
+        int basementTest = Counting.firstTimeBasement("day1_test_input.txt");
         Assertions.assertEquals(7, basementTest);
     }
 }
