@@ -1,7 +1,6 @@
 package day3;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,11 +17,11 @@ public class SantasDelivery {
         Map<Integer, String> deliveries = new HashMap<>();
         deliveries.put(0,"00");
 
-
+        int keyHashMap = 0;
         int x =0;
         int y=0;
         String position;
-        int house = 0;
+
 
 
         try (BufferedReader br = new BufferedReader(new FileReader(filename))){
@@ -41,11 +40,11 @@ public class SantasDelivery {
                     x ++;
                 }
 
-                house++;
+                keyHashMap++;
                 position = String.valueOf(x) + String.valueOf(y);
 
                 if (!deliveries.containsValue(position)){
-                    deliveries.put(house,position);
+                    deliveries.put(keyHashMap,position);
                     presentsDeliveries++;
                 }
             }
