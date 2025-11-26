@@ -15,7 +15,7 @@ public class RoboSanta {
         int presentsDeliveries = 1; // Startwert der gelieferten Geschenke
 
         Map<Integer, String> deliveries = new HashMap<>(); // Hashmap für die erfassung bereits gelieferter Pakete
-        deliveries.put(0,"00");
+        deliveries.put(0,"0:0");
 
         int keyHashMap = 0; // Key für die Hashmap
 
@@ -34,12 +34,12 @@ public class RoboSanta {
             line = br.readLine();
             String[] allMovements = line.split("");
 
-            String[] santaMovements = new String[allMovements.length/2]; // ein array für Santas Bewegungen
+            String[] santaMovements = new String[allMovements.length/2];               // ein array für Santas Bewegungen
             int santasArrayIndex = 0;
-            String[] robotMovements = new String[allMovements.length/2]; // ein Array für Robos Bewegungen
+            String[] robotMovements = new String[allMovements.length/2];               // ein Array für Robos Bewegungen
             int robosArrayIndex = 0;
 
-            for(int i=0; i<allMovements.length; i++){   // hier werden die Bewegungen in Santas und Robos Array aufgeteilt
+            for(int i=0; i<allMovements.length; i++){                                  // hier werden die Bewegungen in Santas und Robos Array aufgeteilt
                 if (i %2 == 0){
                     santaMovements[santasArrayIndex] = allMovements[i];
                     santasArrayIndex++;
@@ -49,10 +49,8 @@ public class RoboSanta {
                 }
             }
 
-            // bis hier klappt alles
-
             for(String movement : santaMovements){
-                if (Objects.equals(movement, "^")){
+                if (Objects.equals(movement, "^")){                                 // auslesen in welche Richtung sich Santa bewegt
                     ySanta ++;
                 } else if (Objects.equals(movement, "v")){
                     ySanta --;
@@ -62,16 +60,16 @@ public class RoboSanta {
                     xSanta ++;
                 }
 
-                keyHashMap++;
-                santaPosition = String.valueOf(xSanta) + String.valueOf(ySanta);
+                keyHashMap++;                                                       // key um 1 erhöhen sollte wir einen neuen Eintrag machen
+                santaPosition = String.valueOf(xSanta) + ":" + String.valueOf(ySanta);    // die neue Position in einen String parsen um ihn mit der Hashmap abgleichen zu können
 
-                if (!deliveries.containsValue(santaPosition)){
-                    deliveries.put(keyHashMap,santaPosition);
+                if (!deliveries.containsValue(santaPosition)){                      // Kontrolle, ob die Position schon einmal besucht wurde
+                    deliveries.put(keyHashMap,santaPosition);                       // wenn nicht neuer Eintrag in der Hashmap
                     presentsDeliveries++;
                 }
             }
 
-            for(String movement : robotMovements){
+            for(String movement : robotMovements){                                  // das Gleiche nochmal für Robo
                 if (Objects.equals(movement, "^")){
                     yRobo ++;
                 } else if (Objects.equals(movement, "v")){
@@ -83,7 +81,7 @@ public class RoboSanta {
                 }
 
                 keyHashMap++;
-                robotPosition = String.valueOf(xRobo) + String.valueOf(yRobo);
+                robotPosition = String.valueOf(xRobo) + ":" + String.valueOf(yRobo);
 
                 if (!deliveries.containsValue(robotPosition)){
                     deliveries.put(keyHashMap,robotPosition);
